@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+    height: 100%;
+    width: 100vw;
+}
+
+#imagem_lateral {
+    height: 100%;
+    width: auto;
+    flex-shrink: 0;
+    transform: scaleX(1.1);
+    transform-origin: left;
+}
+
+.direito {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 2.5rem;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+#imagem_logo {
+    transform: rotate(45deg);
+    padding-right: 20px;
+    height: 80px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.logo p {
+    display: flex;
+    font-size: 50px;
+    color: #0a53de;
+    font-family: Impact;
+}
+
+.inputs-fields-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.inputs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 120px;
+}
+
+.fields {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input_nome, .input_data, .input_cpf, .input_email, .input_telefone, .input_cep, .input_estado, .input_cidade, .input_bairro, .input_rua, .input_numero, .input_peso, .input_altura {
+    display: flex;
+    align-items: center;
+    border: 2px solid #AAEE1F;
+    padding: 5px;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.inputs img, .fields img {
+    width: 25px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.inputs input, .fields input {
+    flex: 1;
+    outline: none;
+    border: none;
+    padding: 6px;
+    background-color: transparent;
+}
+
+input[type="date"] {
+    font-family: 'Arial', sans-serif;
+    color: #666
+}
+
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    padding: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+}
+
+fieldset label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.genero_titulo, .Hist_medico_titulo, .objetivos_titulo {
+    font-weight: bold;
+}
+
+fieldset input[type="text"] {
+    border: 2px solid #AAEE1F;
+    padding: 6px;
+    border-radius: 5px;
+    width: 80%;
+}
+
+fieldset label p {
+    margin-left: 10px;
+}
+
+.button_cadastrar {
+    width: 100%;
+    max-width: 435px;
+    padding: 14px;
+    background: #0A53DE;
+    font-family: 'Lucida Sans';
+    border-radius: 20px;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.button_cadastrar:hover {
+    background-color: #0047ab;
+}
