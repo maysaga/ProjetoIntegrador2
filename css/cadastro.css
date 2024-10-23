@@ -75,7 +75,7 @@ main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .input_nome, .input_data, .input_cpf, .input_email, .input_telefone, .input_cep, .input_estado, .input_cidade, .input_bairro, .input_rua, .input_numero, .input_peso, .input_altura {
@@ -85,6 +85,25 @@ main {
     padding: 5px;
     border-radius: 5px;
     width: 80%;
+}
+
+.error-message {
+    color: red;
+    font-size: 11px;
+    margin-top: -10px;
+    display: none;
+}
+
+.error-message.active {
+    display: block;
+}
+
+#genero-error{
+    margin-top: -20px;
+}
+
+#objetivos-error{
+    margin-top: -30px;
 }
 
 .inputs img, .fields img {
