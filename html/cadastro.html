@@ -13,6 +13,7 @@
     <script src="./../js/mascaraCPF.js" defer></script>
 	<script src="./../js/mascaraCelular.js" defer></script>
 	<script src="./../js/mascaraCEP.js" defer></script>
+    <script src="./../js/preencherCEP.js" defer></script>
     <title>FitFun</title>
 </head>
 <body>
@@ -98,10 +99,7 @@
                         <label class="genero_titulo">Gênero</label>
                         <label><input type="radio" name="genero" value="masculino"><p>Masculino</p></label>
                         <label><input type="radio" name="genero" value="feminino"><p>Feminino</p></label>
-                        <label><input type="radio" name="genero" value="nao_binario"><p>Não-binário</p></label>
                         <label><input type="radio" name="genero" value="nao_informar"><p>Prefiro não informar</p></label>
-                        <label class="label_outros"><input type="radio" id="outro_genero" class="outro_gênero" name="genero" value="outro_gênero"><p>Outro</p></label>
-                        <input type="text" id="input_outro_genero" class="input_outro_genero" name="input_outro_genero" placeholder="Digite aqui">
                     </fieldset>
                     <div id="genero-error" class="error-message"></div>
                 </div>
@@ -123,6 +121,7 @@
                         <label class="Hist_medico_titulo">Histórico Médico</label>
                         <label><input type="checkbox" name="diabetes" value="diabetes"><p>Diabetes</p></label>
                         <label><input type="checkbox" name="hipertensao" value="hipertensao"><p>Hipertensão</p></label>
+                        <label><input type="checkbox" name="obesidade" value="obesidade"><p>Obesidade</p></label>
                         <label><input type="checkbox" name="problemas_cardiacos" value="problemas_cardiacos"><p>Problemas Cardíacos</p></label>
                         <label class="label_outros"><input type="checkbox" id="outros_historico" class="outros_historico" name="outros_historico" value="outros_historico"><p>Outros</p></label>
                         <input type="text" id="input_outros_historico" class="input_outros_historico" name="input_outros_historico" placeholder="Digite aqui">
