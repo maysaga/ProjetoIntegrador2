@@ -3,9 +3,7 @@ document.querySelector('.button_cadastrar').addEventListener('click', function (
 
     let isValid = true;
 
-    const camposPreenchidos = verificarCamposObrigatorios();
-
-    if (!camposPreenchidos) {
+    if (!verificarCamposObrigatorios()) {
         isValid = false;
     }
 
@@ -30,6 +28,6 @@ document.querySelector('.button_cadastrar').addEventListener('click', function (
     }
 
     if (isValid) {
-        window.location.href = "index.html";
+        document.querySelector('form').submit();
     }
 });

@@ -1,16 +1,16 @@
-const celular = document.querySelector('#celular');
+function formatarCelular(celular) {
+    celular = celular.replace(/\D/g, '');
 
-celular.addEventListener('keypress', () => {
-	
-	let tamanhoCelular = celular.value.length;
-	
-	if(tamanhoCelular === 0){
-		celular.value += '(';
-	}
-	if(tamanhoCelular === 3){
-		celular.value += ')';
-	}
-	if(tamanhoCelular === 9){
-		celular.value += '-';
-	}
+    if (celular.length === 11) {
+        return `(${celular.substring(0, 2)}) ${celular.substring(2, 7)}-${celular.substring(7)}`;
+    } else if (celular.length === 10) {
+        return `(${celular.substring(0, 2)}) ${celular.substring(2, 6)}-${celular.substring(6)}`;
+    } else {
+        return celular;
+    }
+}
+
+document.getElementById('celular').addEventListener('input', function () {
+    const celularInput = document.getElementById('celular');
+    celularInput.value = formatarCelular(celularInput.value);
 });
