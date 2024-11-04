@@ -9,7 +9,6 @@
     <script src="./../js/validacaoEmail.js" defer></script>
     <script src="./../js/validacaoObrigatoria.js" defer></script>
     <script src="./../js/validacaoFormulario.js" defer></script>
-    <script src="./../js/campoOutros.js" defer></script>
     <script src="./../js/mascaraCPF.js" defer></script>
 	<script src="./../js/mascaraCelular.js" defer></script>
 	<script src="./../js/mascaraCEP.js" defer></script>
@@ -107,19 +106,7 @@
                             <img src="./../imagens/icon-altura.png" id="imagem_altura" alt="Ícone altura">
                             <input type="number" id="altura" name="altura" placeholder="Altura (cm)" required>
                         </div>
-                        <div id="altura-error" class="error-message"></div>
-                        
-                        <!--
-                        <fieldset class="hist_medico">
-                            <label class="Hist_medico_titulo">Histórico Médico</label>
-                            <label><input type="checkbox" name="historicoMedico[]" value="diabetes"><p>Diabetes</p></label>
-                            <label><input type="checkbox" name="historicoMedico[]" value="hipertensao"><p>Hipertensão</p></label>
-                            <label><input type="checkbox" name="historicoMedico[]" value="obesidade"><p>Obesidade</p></label>
-                            <label><input type="checkbox" name="historicoMedico[]" value="problemas_cardiacos"><p>Problemas Cardíacos</p></label>
-                            <label class="label_outros"><input type="checkbox" id="outros_historico" class="outros_historico" name="historicoMedico[]" value="outros"><p>Outros</p></label>
-                            <input type="text" id="input_outros_historico" class="input_outros_historico" name="outrosHistorico" placeholder="Digite aqui">
-                        </fieldset>        
-                        -->         
+                        <div id="altura-error" class="error-message"></div>      
                         
                         <fieldset class="genero" name="genero">
                             <label class="genero_titulo">Gênero</label>
@@ -130,7 +117,7 @@
                         <div id="genero-error" class="error-message"></div>
                         
                         <fieldset class="objetivos" name="objetivos">
-                            <label class="objetivos_titulo">Objetivos de Treino</label>
+                            <label class="objetivos_titulo">Objetivo de Treino</label>
                             <label><input type="radio" name="objetivos" value="perda_peso"><p>Perda de Peso</p></label>
                             <label><input type="radio" name="objetivos" value="ganho_massa"><p>Ganho de Massa Muscular</p></label>
                             <label><input type="radio" name="objetivos" value="condicionamento"><p>Condicionamento Físico</p></label>
