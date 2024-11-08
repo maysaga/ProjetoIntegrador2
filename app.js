@@ -15,7 +15,7 @@ app.use('/imagens', express.static('imagens'));
 const conexao = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '@Melo241',
+    password: 'root',
     database: 'academia_ginastica'
 });
 

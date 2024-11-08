@@ -1,0 +1,53 @@
+.container{
+	display: flex;
+	border: 2px solid;
+	border-color: #0a53de;
+}
+body{
+	background-color: white;
+	font-family: 'Arial', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+p {
+    display: flex;
+    align-items: center;
+    font-size: 50px;
+    color: #0a53de;
+}
+/*
+img{
+	width: 70px;
+	height: auto;
+}
+
+input[type="submit"]:hover{
+	background-color: white; 
+	color: #0a53de;
+	border: 1px solid #0a53de;
+}
+
+label[name="titulo-logo"]{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.escolher-registro{
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 100px;;
+	max-width: 650px;
+	border-radius: 20px;
+}*/
