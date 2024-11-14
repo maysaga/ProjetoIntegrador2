@@ -13,7 +13,7 @@
             
             <div id="container" class="container">
 
-                <div id="container_botoes" class="container_botoes">
+                <div id="container_botoes" class="containers">
 
                     <div id="imagem_lateral">
                         <img src="./../imagens/lateral_catraca.png" id="imagem_lateral" alt="Imagem de alunos da academia">
@@ -21,28 +21,32 @@
                     
                     <div id='botoes_logo' class="'botoes_logo">
     
-                        <div id="logo">
+                        <div id="logo_botoes" id="logo">
                             <p id="fitfun"><img src="./../imagens/icon-barraDePeso.png" id="imagem_logo" alt="Logo FitFun">FITFUN</p>
                         </div>
     
-                        <div id="mensagem">
+                        <div id="mensagem_botoes" class="mensagem">
                             <p>Selecione o que deseja registrar:</p>
                         </div>
         
-                        <div id="botoes_registros">
-                            <button type="submit" id="botao_entrada" class="botao_entrada_saida">Entrada</button>
-                            <button type="submit" id="botao_saida" class="botao_entrada_saida">Saída</button>
+                        <div id="botoes_entrada_saida" class="botoes_registros">
+                            <button type="submit" id="botao_entrada" class="buttons_catraca">Entrada</button>
+                            <button type="submit" id="botao_saida" class="buttons_catraca">Saída</button>
                         </div>  
 
                 </div><!--div container_botoes-->
                 
-                <div id="container_cpf" class="container_cpf">
+                <div id="container_cpf" class="containers">
+
+                    <div id="logo_cpf" id="logo">
+                        <p id="fitfun"><img src="./../imagens/icon-barraDePeso.png" id="imagem_logo" alt="Logo FitFun">FITFUN</p>
+                    </div>
 
                     <div id="formulario" class="formulario">
 
                         <form id="inserir_cpf">
 
-                            <div id="mensagem_cpf">
+                            <div id="mensagem_cpf" class="mensagem">
                                 <p>Olá, seja bem-vindo de volta!</p>
                             </div>
 
@@ -52,8 +56,8 @@
                             </div>                    
                             <div id="cpf-error" class="error-message"></div>
 
-                            <div id="button" class="button">
-                                <button type="submit" id="botao_registrar" class="botoes_registros">Registrar Atividade</button>
+                            <div id="button" class="botoes_registros">
+                                <button type="submit" id="botao_registrar" class="buttons_catraca">Registrar Atividade</button>
                             </div>
 
                             <div id="imagem_lateral_cpf">

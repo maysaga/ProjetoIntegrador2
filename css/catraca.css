@@ -15,25 +15,21 @@ body{
 	margin: 0;
 }
 
-#container_botoes{
-
-}
-
-#logo{
+.logo{
 	display: flex;
     font-size: 50px;
     color: #0a53de;
     font-family: Impact;
 }
 
-#mensagem{
+.mensagem{
 	display: flex;
     font-size: 15px;
     flex-direction: column;
 	object-fit: cover;
 }
 
-#container{
+.containers{
 	display: flex;
     border: 2px solid #0a53de;
     align-items: center;
@@ -50,7 +46,7 @@ body{
 	border-radius: 15px;
 }
 
-#botoes_registros{
+.botoes_registros{
 	display: flex;
     flex-direction: column;
 }
@@ -63,13 +59,34 @@ body{
     align-items: center;
 	gap: 30px;
 }
-#botoes_registros{
+
+#cpf{
+	flex-direction: column;
+	margin-left: 10px;
+	gap: 15px;
+	flex: 1;
+    display: flex;
+	padding: 10px;
+	border: none;
+	outline:none;
+}
+
+.input_cpf{
+	display: flex;
+    align-items: center;
+    border: 2px solid #AAEE1F;
+    padding: 5px;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.botoes_registros{
     display: flex;
     justify-content: center;
     width: 70%;
 }
 
-#botao_entrada, #botao_saida {
+.buttons_catraca {
     /*width: 100%;*/
     /*max-width: 435px;*/
     padding: 14px;
@@ -80,5 +97,17 @@ body{
     color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 20px;*/
+    margin-top: 20px;
 }
+
+.error-message {
+    color: red;
+    font-size: 11px;
+    margin-top: -10px;
+    display: none;
+}
+
+.error-message.active {
+    display: block;
+}
+
