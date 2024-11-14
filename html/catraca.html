@@ -11,30 +11,62 @@
 	<body>
         <main>
             
-            <div id="container">
+            <div id="container" class="container">
 
-                <div id="imagem_lateral">
-                    <img src="./../imagens/lateral_catraca.png" id="imagem_lateral" alt="Imagem de alunos da academia">
-                </div>
-                
-                <div id='botoes_logo' class="'botoes_logo">
+                <div id="container_botoes" class="container_botoes">
 
-                    <div id="logo">
-                        <p id="fitfun"><img src="./../imagens/icon-barraDePeso.png" id="imagem_logo" alt="Logo FitFun">FITFUN</p>
+                    <div id="imagem_lateral">
+                        <img src="./../imagens/lateral_catraca.png" id="imagem_lateral" alt="Imagem de alunos da academia">
                     </div>
-
-                    <div id="mensagem">
-                        <p>Selecione o que deseja registrar:</p>
-                    </div>
+                    
+                    <div id='botoes_logo' class="'botoes_logo">
     
-                    <div id="botoes_registros">
-                        <button type="submit" id="botao_entrada" class="botao_entrada_saida">Entrada</button>
-                        <button type="submit" id="botao_saida" class="botao_entrada_saida">Saída</button>
-                    </div>
+                        <div id="logo">
+                            <p id="fitfun"><img src="./../imagens/icon-barraDePeso.png" id="imagem_logo" alt="Logo FitFun">FITFUN</p>
+                        </div>
+    
+                        <div id="mensagem">
+                            <p>Selecione o que deseja registrar:</p>
+                        </div>
+        
+                        <div id="botoes_registros">
+                            <button type="submit" id="botao_entrada" class="botao_entrada_saida">Entrada</button>
+                            <button type="submit" id="botao_saida" class="botao_entrada_saida">Saída</button>
+                        </div>  
 
-                </div>
+                </div><!--div container_botoes-->
+                
+                <div id="container_cpf" class="container_cpf">
 
-            </div>
+                    <div id="formulario" class="formulario">
+
+                        <form id="inserir_cpf">
+
+                            <div id="mensagem_cpf">
+                                <p>Olá, seja bem-vindo de volta!</p>
+                            </div>
+
+                            <div class="input_cpf">
+                                <img src="./../imagens/icon-cpf.svg" id="imagem_cpf" alt="Ícone cpf">
+                                <input type="text" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required>
+                            </div>                    
+                            <div id="cpf-error" class="error-message"></div>
+
+                            <div id="button" class="button">
+                                <button type="submit" id="botao_registrar" class="botoes_registros">Registrar Atividade</button>
+                            </div>
+
+                            <div id="imagem_lateral_cpf">
+                                <img src="./../imagens/lateral_catraca.png" id="imagem_lateral_cpf" alt="Imagem de alunos da academia">
+                            </div>
+
+                        </form>
+
+                    </div><!--Div formulario-->
+
+                </div><!--div container_cpf-->
+
+            </div><!--div container-->
 
         </main>
 		
