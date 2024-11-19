@@ -1,4 +1,4 @@
-* {
+*{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -15,10 +15,43 @@ body{
 	margin: 0;
 }
 
+.container-principal{
+	display:flex;
+	border: 3px solid #0a53de;
+	justify-content: space-between;
+	align-items: center;
+	height: 80vh;
+	width: 70vw;
+	border-radius: 15px;
+	background-color: white;
+	gap: 15px;
+}
+
+.container-primario{
+	/*display: flex;*/
+	display: none;
+}
+
+.container-secundario{
+	/*position: absolute;
+    display: none;*/
+	display: flex;
+}
+
+.container{
+	border-radius: 15px;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
 .logo{
 	display: flex;
     font-size: 50px;
     color: #0a53de;
+    font-family: Impact;
+	align-items: center;
     font-family: Impact;
 }
 
@@ -27,68 +60,43 @@ body{
     font-size: 15px;
     flex-direction: column;
 	object-fit: cover;
-}
-
-.containers{
-	display: flex;
-    border: 2px solid #0a53de;
-    align-items: center;
-    height: 80vh;
-	width: 70vw;
-	border-radius: 15px;
-	background-color: white;
-	justify-content: space-between;
-}
-
-#imagem_lateral{
-	height: 100%;
-	border: 2px;
-	border-radius: 15px;
+    font-family: 'Lucida Sans';
 }
 
 .botoes_registros{
 	display: flex;
-    flex-direction: column;
+	justify-content: center;
+    font-family: 'Lucida Sans';
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 70%;
 }
 
-#botoes_logo{
+.primeira-coluna, .segunda-coluna{
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+    justify-content: center; 
+    height: 100%; 
+    
+}
+
+.primeira-coluna{
 	flex: 1 0 auto;
-	flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
+	align-items: center;
+	z-index: 10;
+	width: 30%;
+}
+
+.segunda-coluna{
+	flex: 2 0 auto;
     align-items: center;
 	gap: 30px;
 }
 
-#cpf{
-	flex-direction: column;
-	margin-left: 10px;
-	gap: 15px;
-	flex: 1;
-    display: flex;
-	padding: 10px;
-	border: none;
-	outline:none;
-}
-
-.input_cpf{
-	display: flex;
-    align-items: center;
-    border: 2px solid #AAEE1F;
-    padding: 5px;
-    border-radius: 5px;
-    width: 80%;
-}
-
-.botoes_registros{
-    display: flex;
-    justify-content: center;
-    width: 70%;
-}
-
 .buttons_catraca {
-    /*width: 100%;*/
-    /*max-width: 435px;*/
     padding: 14px;
     background: #0A53DE;
     font-family: 'Lucida Sans';
@@ -98,6 +106,24 @@ body{
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 20px;
+	width: 100%; 
+    max-width: 435px;
+    font-family: 'Lucida Sans';
+}
+
+.buttons_catraca:hover{
+	background-color: white;
+	border: 2px solid #3294ac;
+	color: #3294ac;
+}
+
+.input_cpf{
+	display: flex;
+    align-items: center;
+    border: 2px solid #AAEE1F;
+    padding: 5px;
+    border-radius: 5px;
+    width: 150%;
 }
 
 .error-message {
@@ -111,3 +137,56 @@ body{
     display: block;
 }
 
+.imagem-lateral {
+    height: 100%; 
+	width: 100%;
+	object-fit: cover;
+	border-radius: 15px;
+}
+
+#cpf{
+	flex-direction: column;
+	margin-left: 10px;
+	gap: 15px;
+	flex: 1;
+    display: flex;
+	padding: 10px;
+	border: none;
+	outline:none;
+}
+
+.logo-fitfun{
+	height: 50px;
+}
+
+.container-secundario .primeira-coluna{
+	order: 2;
+}
+
+.container-secundario .segunda-coluna{
+	order: 1;
+	align-items: center;
+}
+
+.form{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	gap: 15px;
+	width: 100%;
+	align-items: center;
+}
+
+form{
+    align-items: center;
+}
+
+#botao_registrar{
+	display: flex;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 150%;
+    font-family: 'Lucida Sans';
+}
