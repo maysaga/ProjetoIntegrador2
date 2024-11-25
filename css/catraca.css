@@ -25,25 +25,28 @@ body{
 	border-radius: 15px;
 	background-color: white;
 	gap: 15px;
+	/*border: 2px solid red;*/
 }
 
 .container-primario{
-	/*display: flex;*/
-	display: none;
+	display: flex;
+	/*display: none;*/
 }
 
 .container-secundario{
-	/*position: absolute;
-    display: none;*/
+	position: absolute;
+    /*display: none;*/
 	display: flex;
 }
 
 .container{
 	border-radius: 15px;
-	width: 100%;
-	height: 100%;
+	width: 70vw;
+	height: 80vh;
 	justify-content: center;
 	align-items: center;
+	object-fit: cover;
+	/*border: 2px solid green;*/
 }
 
 .logo{
@@ -84,16 +87,17 @@ body{
 }
 
 .primeira-coluna{
-	flex: 1 0 auto;
+	width: 40%;
 	align-items: center;
 	z-index: 10;
-	width: 30%;
 }
 
 .segunda-coluna{
-	flex: 2 0 auto;
+	width: 60%;
     align-items: center;
 	gap: 30px;
+	flex-direction: column;
+	display: flex;
 }
 
 .buttons_catraca {
@@ -107,7 +111,6 @@ body{
     transition: background-color 0.3s;
     margin-top: 20px;
 	width: 100%; 
-    max-width: 435px;
     font-family: 'Lucida Sans';
 }
 
@@ -123,13 +126,14 @@ body{
     border: 2px solid #AAEE1F;
     padding: 5px;
     border-radius: 5px;
-    width: 150%;
+    width: 100%;
+	justify-content: center;
 }
 
 .error-message {
     color: red;
     font-size: 11px;
-    margin-top: -10px;
+    margin-top: 10px;
     display: none;
 }
 
@@ -142,6 +146,7 @@ body{
 	width: 100%;
 	object-fit: cover;
 	border-radius: 15px;
+	left: 0;
 }
 
 #cpf{
@@ -161,11 +166,15 @@ body{
 
 .container-secundario .primeira-coluna{
 	order: 2;
+	z-index: -1;
+	/*animation: animacao_segunda_coluna 2s;*/
 }
 
 .container-secundario .segunda-coluna{
 	order: 1;
 	align-items: center;
+	z-index: -1;
+	/*animation: animacao_segunda_coluna 2s;*/
 }
 
 .form{
@@ -173,12 +182,16 @@ body{
 	justify-content: center;
 	flex-direction: column;
 	gap: 15px;
-	width: 100%;
+	width: 55%;
 	align-items: center;
+	text-align:center;
 }
 
 form{
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+    text-align: center;
 }
 
 #botao_registrar{
@@ -189,4 +202,87 @@ form{
 	gap: 15px;
 	width: 150%;
     font-family: 'Lucida Sans';
+	text-align: center;
+	align-items: center;
+}
+
+.selecionar-entrada-saida-js .container-primario .primeira-coluna,
+.selecionar-entrada-saida-js .container-primario .segunda-coluna{
+	z-index: 11;
+}
+
+.selecionar-entrada-saida-js .container-secundario .primeira-coluna,
+.selecionar-entrada-saida-js .container-secundario .segunda-coluna{
+	z-index: -1;
+}
+
+.registrar-atividade-js .container-secundario .primeira-coluna,
+.registrar-atividade-js .container-secundario .segunda-coluna{
+	z-index: 11;
+}
+
+.registrar-atividade-js .container-primario .primeira-coluna,
+.registrar-atividade-js .container-primario .segunda-coluna{
+	z-index: -1;
+}
+
+.selecionar-entrada-saida-js .container-primario {
+    animation: slideInLeft 0.5s forwards;
+}
+
+.selecionar-entrada-saida-js .container-secundario {
+    animation: slideOutRight 0.5s forwards;
+}
+
+.registrar-atividade-js .container-secundario {
+    animation: slideInRight 0.5s forwards;
+}
+
+.registrar-atividade-js .container-primario {
+    animation: slideOutLeft 0.5s forwards;
+}
+
+/* Animações de deslize */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 }
