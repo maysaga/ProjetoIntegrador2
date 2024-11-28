@@ -1,12 +1,9 @@
-var btn_entrada = document.querySelector("#botao_entrada");
-var btn_saida = document.querySelector("#botao_saida");
-
-var body = document.querySelector("body");
-
-btn_entrada.addEventListener("click", function(){
-	body.className = "registrar-atividade-js";
+document.getElementById('botao_entrada').addEventListener('click', function () {
+    document.body.className = "registrar-atividade-js"; // Mostra o campo de CPF
+    document.getElementById('tipoRegistro').value = 'entrada'; // Define o tipo de registro
 });
 
-btn_saida.addEventListener("click", function(){
-	body.className = "registrar-atividade-js";
+document.getElementById('botao_saida').addEventListener('click', function () {
+    document.body.className = "registrar-atividade-js"; // Mostra o campo de CPF
+    document.getElementById('tipoRegistro').value = 'saida'; // Define o tipo de registro
 });

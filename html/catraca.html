@@ -10,6 +10,7 @@
 		<script src="./../js/trocaContainer.js" defer></script>
 		<script src="./../js/validacaoCatraca.js" defer></script>
 		<script src="./../js/validacaoObrigatoriaCatraca.js" defer></script>
+
 		<title>FitFun: Catraca</title>
 	</head>
 	
@@ -35,8 +36,8 @@
                         </div>
         
                         <div id="botoes_entrada_saida" class="botoes_registros">
-                            <button type="submit" id="botao_entrada" class="buttons_catraca">Entrada</button>
-                            <button type="submit" id="botao_saida" class="buttons_catraca">Saída</button>
+                            <button type="button" id="botao_entrada" class="buttons_catraca">Entrada</button>
+                            <button type="button" id="botao_saida" class="buttons_catraca">Saída</button>
                         </div>  
 					</div> <!--div segunda-coluna-->
 
@@ -60,8 +61,9 @@
 						
 						<div class="form" id="form">
 						
-							<form action="/catraca"  class="formulario-cpf" method="POST">	
-								
+							<form class="formulario-cpf" method="POST" action="/catraca">	
+								<input type="hidden" id="tipoRegistro" name="tipoRegistro" value="">
+
 								<div class="input_cpf">
 									<img src="./../imagens/icon-cpf.svg" id="imagem_cpf" alt="Ícone cpf">
 									<input type="text" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required>
@@ -83,6 +85,18 @@
             </div><!--div container-principal-->
 
         </main>
+
+		<script>
+			document.getElementById('botao_entrada').addEventListener('click', function () {
+				// Define o valor do campo oculto para "entrada"
+				document.getElementById('tipoRegistro').value = 'entrada';
+			});
+
+			document.getElementById('botao_saida').addEventListener('click', function () {
+				// Define o valor do campo oculto para "saida"
+				document.getElementById('tipoRegistro').value = 'saida';
+			});
+		</script>
 		
 	</body>
 </html>

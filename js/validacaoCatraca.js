@@ -1,23 +1,51 @@
-document.querySelector('#botao_registrar').addEventListener('click', function (e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+    // Seleciona o formulário e o botão de registro
+    const form = document.querySelector('form');
+    const botaoRegistrar = document.querySelector('#botao_registrar');
 
-    let isValid = true;
+    // Validação do formulário no envio
+    form.addEventListener('submit', function (e) {
+        const cpfInput = document.querySelector('#cpf');
+        const cpf = cpfInput.value.trim();
 
-    if (!verificarCamposObrigatorios()) {
-        isValid = false;
-    }
+        let isValid = true;
 
-    const cpfInput = document.getElementById('cpf');
-    const cpf = cpfInput.value.trim();
+        // Verifica se o CPF foi fornecido
+        if (!cpf || cpf === "") {
+            e.preventDefault();  // Impede o envio do formulário
+            alert('Por favor, digite um CPF!');
+            isValid = false;
+        }
 
-    if (cpf !== "" && !validarCPF(cpf)) {
-        exibirMensagemErro("CPF inválido!", 'cpf');
-        isValid = false;
-    } else if (cpf !== "") {
-        esconderMensagemErro('cpf');
-    }
+        // Valida o CPF, se fornecido
+        if (isValid && cpf !== "" && !validarCPF(cpf)) {
+            e.preventDefault();  // Impede o envio do formulário
+            exibirMensagemErro("CPF inválido!", 'cpf');
+            isValid = false;
+        } else if (cpf !== "") {
+            esconderMensagemErro('cpf');
+        }
 
-	 if (isValid) {
-			alert("Atividade registrada com sucesso!");
-		}
+        // Verifica campos obrigatórios
+        if (isValid && !verificarCamposObrigatorios()) {
+            e.preventDefault();  // Impede o envio do formulário
+            isValid = false;
+        }
+
+        // Se a validação passar, o formulário será enviado
+        /*if (isValid) {
+            alert("Atividade registrada com sucesso!");
+        }*/
+    });
+
+    // Previne o envio do formulário antes de qualquer validação
+    botaoRegistrar.addEventListener('click', function (e) {
+        const cpfInput = document.querySelector('#cpf');
+        const cpf = cpfInput.value.trim();
+
+        if (!cpf || cpf === "") {
+            alert('Por favor, digite um CPF!');
+            e.preventDefault();  // Impede o envio até o CPF ser preenchido
+        }
+    });
 });
