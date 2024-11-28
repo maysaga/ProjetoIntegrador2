@@ -1,0 +1,146 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 3px solid #0a53de;
+    height: 50vh;
+    width: 60vw;
+    border-radius: 15px;
+    background-color: white;
+    gap: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ranking {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #a0ffa0;
+    background: #f4fff4;
+    border-radius: 8px;
+}
+
+.ranking h2 {
+    font-size: 24px;
+    color: #0077ff;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table thead tr {
+    background-color: #0077ff;
+    color: white;
+}
+
+table th, table td {
+    border: 1px solid #a0ffa0;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f4fff4;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #eaffea;
+}
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: #172fe2;
+    height: 100vh;
+    border-radius: 0px 18px 18px 0px;
+    position: relative;
+    transition: all .5s;
+    min-width: 150px; 
+    z-index: 2;
+
+}
+
+#sidebar-content {
+    padding: 12px;
+}
+
+#user {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 8px;    
+    margin-bottom: 24px;
+}
+
+#user_avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#user_infos span:last-child {
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center; 
+}
+
+#side_items {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    list-style: none;
+}
+
+
+.botao-voltar {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.botao-voltar button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #172fe2;
+    border: none;
+    color: #ffffff;
+    font-size: 12\px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.botao-voltar button i {
+    font-size: 24px;
+}
+
+
+

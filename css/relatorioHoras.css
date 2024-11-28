@@ -1,0 +1,141 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #ffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: #fff;
+    padding-left: 200px;
+    padding-top: 80px;
+}
+
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 3px solid #0a53de;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 80vh;
+    width: 60vw;
+    padding: 20px;
+    overflow: hidden;
+    margin-left: 150px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 20px;
+    display: none;
+}
+
+.card {
+    background-color: #ffff;
+    border: 2px solid rgb(170, 238, 31);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgb(170, 238, 31, 0.6);
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    min-width: 250px;
+    padding: 15px;
+    width: calc(33.33% - 30px);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.search-box {
+    align-items: center;
+    background-color: #ffff;
+    border: 2px solid #aaee1f;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(170, 238, 31, 0.8);
+    display: flex;
+    gap: 10px;
+    height: 181px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 45px;
+    width: 95%;
+    max-width: 950px;
+}
+
+.search-box label {
+    background-color: #fff;
+    color: #000000;
+    font-weight: bold;
+}
+
+.search-box input {
+    background-color: #ffff;
+    border: 1px solid #ccc;
+    padding: 8px;
+    width: 250px;
+}
+
+.btn_cpf {
+    border-radius: 20px;
+    justify-content: right;
+    padding-left: auto;
+    text-align: center;
+    width: auto;
+}
+
+.error-message {
+    color: red;
+    font-size: 11px;
+    margin-top: -10px;
+    display: none;
+}
+
+.error-message.active {
+    display: block;
+}
+
+.botao-voltar {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.botao-voltar button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #172fe2;
+    border: none;
+    color: #ffffff;
+    font-size: 12\px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.botao-voltar button i {
+    font-size: 24px;
+}
+
+
+
+
+
+
+
