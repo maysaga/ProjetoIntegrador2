@@ -97,17 +97,6 @@ body {
     width: auto;
 }
 
-.error-message {
-    color: red;
-    font-size: 11px;
-    margin-top: -10px;
-    display: none;
-}
-
-.error-message.active {
-    display: block;
-}
-
 .botao-voltar {
     position: fixed;
     bottom: 20px;
