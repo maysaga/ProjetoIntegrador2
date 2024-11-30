@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ProjetoIntegrador2/css/gerente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/ProjetoIntegrador2/js/relatorioClassificacao.js"></script>
+    <script src="/ProjetoIntegrador2/js/hideGerente.js"></script>
+    <title>Relatórios - FITFUN</title>
+</head>
+<body>
+    <!-- Sidebar-->
+    <div id="sidebar">
+        <div id="user">
+            <img src="/ProjetoIntegrador2/imagens/icon-perfil.png" id="user_avatar" alt="perfil">
+            <div id="user_infos">
+                <span>Gerente</span>
+            </div>
+        </div>
+
+        <!-- Botões -->
+        <div id="buttons-container">
+            <button onclick="toggleView('ranking-dos-alunos')">
+                <i class="fa-solid fa-table-list"></i> Relatório de Classificação
+            </button>
+            <button onclick="toggleView('relatorio-horas')">
+                <i class="fa-solid fa-clock"></i> Relatório de Horas
+            </button>
+        </div>
+
+        <!-- Logo -->
+        <div id="logo-icon">
+            <img id="logo" src="/ProjetoIntegrador2/imagens/icon-barraDePeso.png" alt="Logo">
+            <span class="description-logo">FITFUN</span>
+        </div>
+    </div>
+
+    <!--Conteudo dos formulários-->
+    <div id="content">
+        <!-- Relatório de Classificação -->
+        <div id="ranking-dos-alunos" class="ranking hidden">
+            <h2>Classificação dos Alunos</h2>
+            <table id="ranking-table">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>CPF</th>
+                        <th>Nome do Aluno</th>
+                        <th>Classificação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Relatório de Horas -->
+        <div id="relatorio-horas" class="ranking hidden">
+            <h2>Relatório de Horas</h2>
+            <table id="horas-table">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>CPF</th>
+                        <th>Nome do Aluno</th>
+                        <th>Horas Semanais</th>
+                        <th>Horas Gerais</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados da tabela -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
