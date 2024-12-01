@@ -162,6 +162,34 @@ app.post('/catraca', function(req, res) {
     });
 });
 
+/// ROTA PARA BUSCAR REGISTROS DO ALUNO
+app.post('/relatorio-aluno', function(req, res) {
+    const { cpf } = req.body;
+
+    // Verificar se o CPF foi fornecido
+    if (!cpf) {
+        return res.status(400).json({ mensagem: "CPF não fornecido" });
+    }
+
+    // Consultar os registros do aluno na tabela de catraca
+    const sqlBuscarRegistros = `
+        SELECT CPF, DATA_HORA_ENTRADA, DATA_HORA_SAIDA
+        FROM catraca
+        WHERE CPF = ?`;
+
+    conexao.query(sqlBuscarRegistros, [cpf], (erro, registros) => {
+        if (erro) {
+            console.error("Erro ao buscar registros:", erro);
+            return res.status(500).json({ mensagem: "Erro ao buscar registros" });
+        }
+
+        // Enviar os registros encontrados
+        res.json({ registros });
+    });
+});
+
+
+
 // Iniciar o servidor
 app.listen(8080, () => {
     console.log("Servidor rodando na porta 8080: http://localhost:8080");

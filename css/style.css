@@ -55,8 +55,10 @@ main {
     border-width: 2px;
     border-style: solid;
     border-color:#AAEE1F;
-    width: 45%;
-    border-radius: 8px;;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    align-items: center;
 }
 
 .input_login img{
@@ -68,6 +70,8 @@ main {
     outline: none;
     border: none;
     padding: 14px;
+    width: 100%;
+    border-radius: 8px;
 }
 
 .button_entrar{

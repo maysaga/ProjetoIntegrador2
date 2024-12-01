@@ -17,14 +17,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     return response.json();
                 }
+                console.log(response);
                 throw new Error('Erro ao verificar CPF.');
             })
             .then(data => {
                 if (data.existe) {
                     alert('Seja bem-vindo, você será redirecionado em alguns instantes.');
                     
+                    localStorage.setItem('cpfAluno', cpf);
+
                     setTimeout(() => {
-                        window.location.href = '/html/welcome.html';
+                        window.location.href = '/html/relatorioAluno.html';
                     }, 2000);
                 } else {
                     alert('CPF não encontrado, realize seu cadastro.');

@@ -25,13 +25,20 @@
     
             <h4 id="login_conta">Faça login na sua conta</h4>
             
-            <div class="input_login">
-                <img src ="/imagens/icon-cpf.svg" id="icone_cpf" alt="Ícone CPF"> <input type="text" id="cpf" name="cpf" placeholder="CPF" maxlength="14">
-            </div>
             
-            <div class="">
-                <button class="button_entrar">Entrar</button>
-            </div>
+<form id="formLogin" action="/login" method="POST">
+    
+    <div class="input_login">
+        <img src="/imagens/icon-cpf.svg" id="icone_cpf" alt="Ícone CPF"> 
+        <input type="text" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required>
+    </div>
+    
+    
+    <div>
+        <button class="button_entrar" type="submit">Entrar</button>
+    </div>
+</form>
+
     
             <div class="botao_cadastro">
                 <label for="page-link" class="link-label">
