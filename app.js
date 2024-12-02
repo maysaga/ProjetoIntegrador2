@@ -98,10 +98,9 @@ app.post('/catraca', function(req, res) {
     dataHoraAtual.setHours(dataHoraAtual.getHours() - 3);  // Ajuste para o fuso horário de Brasília (GMT-3)
     const dataHoraAtualFormatada = dataHoraAtual.toISOString().slice(0, 19).replace('T', ' '); // Formato MySQL
 
-
     // Verifica se o tipo de registro é válido (entrada ou saída)
     if (tipoRegistro !== 'entrada' && tipoRegistro !== 'saida') {
-        return res.json({ success: false, message: "Tipo de registro inválido!" });
+        return res.status(500).json({ mensagem: "Tipo de registro inválido!" });
     }
 
     // Verificar se o CPF existe na tabela ALUNOS
@@ -109,11 +108,11 @@ app.post('/catraca', function(req, res) {
     conexao.query(sqlVerificarCPF, [cpf], function(erro, resultados) {
         if (erro) {
             console.error("Erro ao verificar CPF:", erro);
-            return res.json({ success: false, message: "Erro ao verificar CPF" });
+            return res.status(500).json({ mensagem: "Erro ao verificar CPF" });
         }
 
         if (resultados.length === 0) {
-            return res.json({ success: false, message: "CPF não encontrado!" });
+            return res.status(500).json({ mensagem: "CPF não encontrado!" });
         }
 
         // Recupera o ID do aluno (assumindo que a tabela ALUNOS tenha uma coluna ID_ALUNO)
@@ -124,13 +123,13 @@ app.post('/catraca', function(req, res) {
         conexao.query(sqlVerificarRegistro, [idAluno], (erro, registros) => {
             if (erro) {
                 console.error("Erro ao verificar registros:", erro);
-                return res.json({ success: false, message: "Erro ao verificar registros" });
+                return res.status(500).json({ mensagem: "Erro ao verificar registros" });
             }
 
             if (tipoRegistro === 'entrada') {
                 // Bloquear nova entrada se já houver uma entrada sem saída
                 if (registros.length > 0) {
-                    return res.json({ success: false, message: "O aluno já possui uma entrada sem saída registrada." });
+                    return res.status(500).json({ mensagem: "O aluno já possui uma entrada sem saída registrada." });
                 }
 
                 // Inserir nova entrada
@@ -138,14 +137,14 @@ app.post('/catraca', function(req, res) {
                 conexao.query(sqlEntrada, [cpf, idAluno, dataHoraAtualFormatada], (erro) => {
                     if (erro) {
                         console.error("Erro ao registrar entrada:", erro);
-                        return res.json({ success: false, message: "Erro ao registrar entrada" });
+                        return res.status(500).json({ mensagem: "Erro ao registrar entrada" });
                     }
-                    return res.json({ success: true, message: "Entrada registrada com sucesso!" });
+                    return res.status(500).json({ mensagem: "Entrada registrada com sucesso!" });
                 });
             } else if (tipoRegistro === 'saida') {
                 // Verificar se há uma entrada pendente
                 if (registros.length === 0) {
-                    return res.json({ success: false, message: "Não há entrada registrada para este aluno." });
+                    return res.status(500).json({ mensagem: "Não há entrada registrada para este aluno." });
                 }
 
                 // Atualizar saída para o último registro sem saída
@@ -153,9 +152,9 @@ app.post('/catraca', function(req, res) {
                 conexao.query(sqlSaida, [dataHoraAtualFormatada, idAluno], (erro) => {
                     if (erro) {
                         console.error("Erro ao registrar saída:", erro);
-                        return res.json({ success: false, message: "Erro ao registrar saída" });
+                        return res.status(500).json({ mensagem: "Erro ao registrar saída" });
                     }
-                    res.status(400).json({ message: 'Saída registrada com sucesso!' });
+                    return res.status(500).json({ mensagem: "Saída registrada com sucesso!" });
                 });
             }
         });
@@ -188,7 +187,77 @@ app.post('/relatorio-aluno', function(req, res) {
     });
 });
 
+// ROTA PARA RELATÓRIO DE CLASSIFICAÇÃO
+app.get('/relatorio-classificacao', (req, res) => {
+    const sqlConsulta = `
+        SELECT 
+            A.CPF, 
+            A.NOME, 
+            SUM(TIMESTAMPDIFF(SECOND, C.DATA_HORA_ENTRADA, C.DATA_HORA_SAIDA)) / 3600 AS HORAS_TOTAIS
+        FROM ALUNOS A
+        LEFT JOIN CATRACA C ON A.ID = C.ID_ALUNO
+        WHERE C.DATA_HORA_SAIDA IS NOT NULL
+        GROUP BY A.CPF, A.NOME
+        ORDER BY HORAS_TOTAIS DESC;
+    `;
 
+    conexao.query(sqlConsulta, (erro, resultados) => {
+        if (erro) {
+            console.error("Erro ao buscar relatório de classificação:", erro);
+            return res.status(500).json({ mensagem: "Erro ao buscar relatório de classificação." });
+        }
+
+        const calcularClassificacao = (horas) => {
+            if (horas <= 5) return 'Iniciante';
+            if (horas <= 10) return 'Intermediário';
+            if (horas <= 20) return 'Avançado';
+            return 'Extremamente avançado';
+        };
+
+        const relatorio = resultados.map((aluno, index) => ({
+            posicao: index + 1,
+            cpf: aluno.CPF,
+            nome: aluno.NOME,
+            classificacao: calcularClassificacao(aluno.HORAS_TOTAIS || 0),
+        }));
+
+        res.json({ relatorio });
+    });
+});
+
+// ROTA PARA RELATÓRIO DE HORAS
+app.get('/relatorio-horas', (req, res) => {
+    const sqlConsulta = `
+        SELECT 
+            A.CPF, 
+            A.NOME,
+            SUM(CASE WHEN C.DATA_HORA_ENTRADA >= DATE_SUB(NOW(), INTERVAL 7 DAY) 
+                     THEN TIMESTAMPDIFF(SECOND, C.DATA_HORA_ENTRADA, C.DATA_HORA_SAIDA) ELSE 0 END) / 3600 AS HORAS_SEMANAIS,
+            SUM(TIMESTAMPDIFF(SECOND, C.DATA_HORA_ENTRADA, C.DATA_HORA_SAIDA)) / 3600 AS HORAS_TOTAIS
+        FROM ALUNOS A
+        LEFT JOIN CATRACA C ON A.ID = C.ID_ALUNO
+        WHERE C.DATA_HORA_SAIDA IS NOT NULL
+        GROUP BY A.CPF, A.NOME
+        ORDER BY HORAS_SEMANAIS DESC;
+    `;
+
+    conexao.query(sqlConsulta, (erro, resultados) => {
+        if (erro) {
+            console.error("Erro ao buscar relatório de horas:", erro);
+            return res.status(500).json({ mensagem: "Erro ao buscar relatório de horas." });
+        }
+
+        const relatorio = resultados.map((aluno, index) => ({
+            posicao: index + 1,
+            cpf: aluno.CPF,
+            nome: aluno.NOME,
+            horas_semanais: Math.round(aluno.HORAS_SEMANAIS || 0),
+            horas_totais: Math.round(aluno.HORAS_TOTAIS || 0),
+        }));
+
+        res.json({ relatorio });
+    });
+});
 
 // Iniciar o servidor
 app.listen(8080, () => {
