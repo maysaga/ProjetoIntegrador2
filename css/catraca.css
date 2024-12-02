@@ -242,6 +242,27 @@ form{
     animation: slideOutLeft 0.5s forwards;
 }
 
+.botoes_registros #botao_voltar {
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	top: 3px;
+	left: 20px;;
+    background-color: #AAEE1F;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.botoes_registros #botao_voltar:hover {
+    background-color: #ffffff;
+	border: 2px solid #AAEE1F;
+	color: #AAEE1F;
+}
+
+
 /* Animações de deslize */
 @keyframes slideInLeft {
     from {

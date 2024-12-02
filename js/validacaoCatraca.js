@@ -32,10 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
             isValid = false;
         }
 
-        // Se a validação passar, o formulário será enviado
-        /*if (isValid) {
-            alert("Atividade registrada com sucesso!");
-        }*/
+
     });
 
     // Previne o envio do formulário antes de qualquer validação

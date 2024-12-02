@@ -97,6 +97,7 @@ app.post('/catraca', function(req, res) {
     const dataHoraAtual = new Date();
     dataHoraAtual.setHours(dataHoraAtual.getHours() - 3);  // Ajuste para o fuso horário de Brasília (GMT-3)
     const dataHoraAtualFormatada = dataHoraAtual.toISOString().slice(0, 19).replace('T', ' '); // Formato MySQL
+    const dataHoje = dataHoraAtual.toISOString().slice(0, 10); // Apenas a data no formato YYYY-MM-DD
 
     // Verifica se o tipo de registro é válido (entrada ou saída)
     if (tipoRegistro !== 'entrada' && tipoRegistro !== 'saida') {
@@ -118,43 +119,66 @@ app.post('/catraca', function(req, res) {
         // Recupera o ID do aluno (assumindo que a tabela ALUNOS tenha uma coluna ID_ALUNO)
         const idAluno = resultados[0].ID;
 
-        // Verificar registros anteriores na catraca
-        const sqlVerificarRegistro = `SELECT * FROM catraca WHERE ID_ALUNO = ? AND DATA_HORA_SAIDA IS NULL`;
-        conexao.query(sqlVerificarRegistro, [idAluno], (erro, registros) => {
+        // Verificar registros do dia atual
+        const sqlVerificarHoje = `
+            SELECT DATA_HORA_ENTRADA, DATA_HORA_SAIDA 
+            FROM catraca 
+            WHERE ID_ALUNO = ? AND DATE(DATA_HORA_ENTRADA) = ?`;
+        conexao.query(sqlVerificarHoje, [idAluno, dataHoje], (erro, registrosHoje) => {
             if (erro) {
-                console.error("Erro ao verificar registros:", erro);
-                return res.status(500).json({ mensagem: "Erro ao verificar registros" });
+                console.error("Erro ao verificar registros do dia:", erro);
+                return res.status(500).json({ mensagem: "Erro ao verificar registros do dia" });
             }
 
+            // Verificar se o aluno já completou um ciclo de entrada e saída hoje
+            const cicloCompletoHoje = registrosHoje.some(
+                registro => registro.DATA_HORA_ENTRADA && registro.DATA_HORA_SAIDA
+            );            
+
             if (tipoRegistro === 'entrada') {
-                // Bloquear nova entrada se já houver uma entrada sem saída
-                if (registros.length > 0) {
-                    return res.status(500).json({ mensagem: "O aluno já possui uma entrada sem saída registrada." });
+                if (cicloCompletoHoje) {
+                    return res.status(400).json({ mensagem: "O aluno já completou uma entrada e saída hoje." });
                 }
 
-                // Inserir nova entrada
+                // Verificar se já existe uma entrada sem saída hoje
+                const entradaSemSaida = registrosHoje.some(
+                    registro => registro.DATA_HORA_ENTRADA && !registro.DATA_HORA_SAIDA
+                );
+
+                if (entradaSemSaida) {
+                    return res.status(400).json({ mensagem: "O aluno já possui uma entrada sem saída registrada hoje." });
+                }
+
+                // Registrar nova entrada
                 const sqlEntrada = `INSERT INTO catraca (CPF, ID_ALUNO, DATA_HORA_ENTRADA) VALUES (?, ?, ?)`;
                 conexao.query(sqlEntrada, [cpf, idAluno, dataHoraAtualFormatada], (erro) => {
                     if (erro) {
                         console.error("Erro ao registrar entrada:", erro);
                         return res.status(500).json({ mensagem: "Erro ao registrar entrada" });
                     }
-                    return res.status(500).json({ mensagem: "Entrada registrada com sucesso!" });
+                    return res.status(200).json({ mensagem: "Entrada registrada com sucesso!" });
                 });
             } else if (tipoRegistro === 'saida') {
-                // Verificar se há uma entrada pendente
-                if (registros.length === 0) {
-                    return res.status(500).json({ mensagem: "Não há entrada registrada para este aluno." });
+                // Verificar se há uma entrada sem saída hoje
+                const entradaSemSaida = registrosHoje.some(
+                    registro => registro.DATA_HORA_ENTRADA && !registro.DATA_HORA_SAIDA
+                );
+
+                if (!entradaSemSaida) {
+                    return res.status(400).json({ mensagem: "Não há entrada registrada para este aluno hoje." });
                 }
 
-                // Atualizar saída para o último registro sem saída
-                const sqlSaida = `UPDATE catraca SET DATA_HORA_SAIDA = ? WHERE ID_ALUNO = ? AND DATA_HORA_SAIDA IS NULL`;
+                // Atualizar saída no último registro sem saída
+                const sqlSaida = `
+                    UPDATE catraca 
+                    SET DATA_HORA_SAIDA = ? 
+                    WHERE ID_ALUNO = ? AND DATA_HORA_SAIDA IS NULL`;
                 conexao.query(sqlSaida, [dataHoraAtualFormatada, idAluno], (erro) => {
                     if (erro) {
                         console.error("Erro ao registrar saída:", erro);
                         return res.status(500).json({ mensagem: "Erro ao registrar saída" });
                     }
-                    return res.status(500).json({ mensagem: "Saída registrada com sucesso!" });
+                    return res.status(200).json({ mensagem: "Saída registrada com sucesso!" });
                 });
             }
         });
